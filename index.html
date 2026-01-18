@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Aphotech Solar – Energy Assessment & Proposal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0b5ed7">
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background:#f4f6f8;
+  padding:20px;
+}
+
+.container {
+  max-width:900px;
+  margin:auto;
+  background:#ffffff;
+  padding:25px;
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.brand-header {
+  text-align:center;
+  border-bottom:3px solid #0b5ed7;
+  padding-bottom:15px;
+  margin-bottom:25px;
+}
+
+.brand-header img {
+  max-width:120px;
+}
+
+.brand-header h2 {
+  margin:8px 0 2px;
+  color:#0b5ed7;
+}
+
+.brand-header p {
+  font-size:14px;
+  color:#555;
+}
+
+label {
+  font-weight:bold;
+  margin-top:12px;
+  display:block;
+}
+
+input, select, textarea {
+  width:100%;
+  padding:10px;
+  margin-top:6px;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+
+button {
+  margin-top:20px;
+  padding:14px;
+  background:#0b5ed7;
+  color:white;
+  border:none;
+  border-radius:6px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+button:hover {
+  background:#083a9b;
+}
+
+#printBtn {
+  background:#198754;
+}
+
+#proposalSection {
+  display:none;
+  margin-top:40px;
+}
+
+.proposal-box {
+  border:1px solid #ccc;
+  padding:25px;
+}
+
+footer {
+  margin-top:30px;
+  padding-top:15px;
+  border-top:1px solid #ddd;
+  text-align:center;
+  font-size:13px;
+  color:#555;
+}
+
+/* PRINT ONLY PROPOSAL */
+@media print {
+  body {
+    background:#ffffff;
+    padding:0;
+  }
+  #formSection, button {
+    display:none !important;
+  }
+  #proposalSection {
+    display:block !important;
+  }
+  .proposal-box {
+    border:none;
+    padding:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- BRAND -->
+  <div class="brand-header">
+    <img src="icon-192.png" alt="Aphotech Solar">
+    <h2>Aphotech Solar</h2>
+    <p>Commercial Solar & Hybrid Power Solutions</p>
+  </div>
+
+  <!-- FORM SECTION -->
+  <div id="formSection">
+    <h1>Energy Assessment Form</h1>
+
+    <label>Business Name</label>
+    <input id="business">
+
+    <label>Business Type</label>
+    <select id="type">
+      <option>Filling Station</option>
+      <option>Cold Room</option>
+      <option>Factory / Workshop</option>
+      <option>Office</option>
+    </select>
+
+    <label>Generator Size (kVA)</label>
+    <input id="genSize" type="number">
+
+    <label>Generator Hours per Day</label>
+    <input id="hours" type="number">
+
+    <label>Diesel Used per Day (Litres)</label>
+    <input id="diesel" type="number">
+
+    <label>Cost of Diesel per Litre (₦)</label>
+    <input id="dieselCost" type="number">
+
+    <button onclick="generateProposal()">Generate Proposal</button>
+  </div>
+
+  <!-- PROPOSAL SECTION -->
+  <div id="proposalSection">
+    <div class="proposal-box">
+
+      <h2 style="text-align:center;">Preliminary Solar Hybrid Power Proposal</h2>
+
+      <p>
+        This preliminary proposal is prepared by <strong>Aphotech Solar</strong> based on
+        energy information provided during an initial assessment. It is intended to
+        demonstrate the potential benefits of integrating a solar hybrid power system
+        into your current energy infrastructure.
+      </p>
+
+      <p><strong>Client Name:</strong> <span id="pBusiness"></span></p>
+      <p><strong>Business Type:</strong> <span id="pType"></span></p>
+
+      <hr>
+
+      <h3>1. Current Energy Assessment</h3>
+      <p>
+        The facility currently relies heavily on diesel generator power to support daily
+        operations. While effective, this results in high fuel expenditure, increased
+        maintenance costs, and operational inefficiencies.
+      </p>
+
+      <ul>
+        <li><strong>Generator Capacity:</strong> <span id="pGen"></span> kVA</li>
+        <li><strong>Average Daily Runtime:</strong> <span id="pHours"></span> hours</li>
+        <li><strong>Estimated Monthly Diesel Cost:</strong> ₦<span id="pMonthly"></span></li>
+      </ul>
+
+      <h3>2. Identified Opportunity</h3>
+      <p>
+        A properly engineered solar hybrid solution can significantly reduce generator
+        runtime by prioritizing solar energy and battery storage, while retaining the
+        generator as backup for peak or night-time loads.
+      </p>
+
+      <h3>3. Estimated Cost Savings</h3>
+      <p>
+        Based on conservative projections, the following savings are achievable:
+      </p>
+
+      <ul>
+        <li><strong>50% Diesel Reduction:</strong> ₦<span id="save50"></span> per month</li>
+        <li><strong>70% Diesel Reduction:</strong> ₦<span id="save70"></span> per month</li>
+      </ul>
+
+      <p>
+        Additional benefits include reduced generator wear, lower maintenance expenses,
+        quieter operation, improved power stability, and long-term cost control.
+      </p>
+
+      <h3>4. Next Steps</h3>
+      <p>
+        A detailed site inspection and load analysis is recommended to finalize system
+        sizing, component selection, and commercial quotation. This proposal serves as
+        a professional decision-support document and not a final quotation.
+      </p>
+
+      <button id="printBtn" onclick="window.print()">Print / Save as PDF</button>
+
+      <footer>
+        <strong>Aphotech Solar</strong><br>
+        Reliable Power • Reduced Operating Cost • Smart Energy Investment
+      </footer>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+function generateProposal() {
+
+  let businessName = document.getElementById("business").value;
+  let businessType = document.getElementById("type").value;
+  let genSizeVal = document.getElementById("genSize").value;
+  let hoursVal = document.getElementById("hours").value;
+  let dieselVal = Number(document.getElementById("diesel").value);
+  let dieselCostVal = Number(document.getElementById("dieselCost").value);
+
+  if (!businessName || !dieselVal || !dieselCostVal) {
+    alert("Please fill all required fields.");
+    return;
+  }
+
+  let monthly = dieselVal * dieselCostVal * 30;
+
+  document.getElementById("pBusiness").innerText = businessName;
+  document.getElementById("pType").innerText = businessType;
+  document.getElementById("pGen").innerText = genSizeVal;
+  document.getElementById("pHours").innerText = hoursVal;
+  document.getElementById("pMonthly").innerText = monthly.toLocaleString();
+  document.getElementById("save50").innerText = (monthly * 0.5).toLocaleString();
+  document.getElementById("save70").innerText = (monthly * 0.7).toLocaleString();
+
+  document.getElementById("proposalSection").style.display = "block";
+  document.getElementById("proposalSection").scrollIntoView({ behavior: "smooth" });
+}
+
+// SERVICE WORKER
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js");
+}
+</script>
+
+</body>
+</html>
