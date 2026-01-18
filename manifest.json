@@ -1,0 +1,45 @@
+{
+  "id": "/energy-assessment.html",
+  "name": "Aphotech Solar Energy Assessment",
+  "short_name": "Aphotech Solar",
+  "description": "Commercial solar energy assessment and proposal generator",
+  "start_url": "/energy-assessment.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#0b5ed7",
+  "categories": ["business", "productivity", "utilities"],
+  "lang": "en",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "logo-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "logo-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot-mobile.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Aphotech Solar Assessment Tool"
+    },
+    {
+      "src": "screenshot-desktop.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Desktop Proposal Generator"
+    }
+  ]
+}
